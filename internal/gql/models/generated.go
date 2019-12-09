@@ -2,13 +2,56 @@
 
 package models
 
+import (
+	"time"
+)
+
+type Drug struct {
+	ID          string `json:"id"`
+	Name        string `json:"name"`
+	Description string `json:"description"`
+}
+
+type UsageHistories struct {
+	Count *int            `json:"count"`
+	List  []*UsageHistory `json:"list"`
+}
+
+type UsageHistory struct {
+	ID        string     `json:"id"`
+	Drug      *Drug      `json:"drug"`
+	User      *User      `json:"user"`
+	Notes     *string    `json:"notes"`
+	Quantity  int        `json:"quantity"`
+	CreatedAt time.Time  `json:"createdAt"`
+	UpdatedAt *time.Time `json:"updatedAt"`
+}
+
 type User struct {
-	ID     string `json:"id"`
-	Email  string `json:"email"`
-	UserID string `json:"userId"`
+	ID          string     `json:"id"`
+	Email       string     `json:"email"`
+	Name        *string    `json:"name"`
+	FirstName   *string    `json:"firstName"`
+	LastName    *string    `json:"lastName"`
+	NickName    *string    `json:"nickName"`
+	Description *string    `json:"description"`
+	Location    *string    `json:"location"`
+	CreatedAt   time.Time  `json:"createdAt"`
+	UpdatedAt   *time.Time `json:"updatedAt"`
 }
 
 type UserInput struct {
-	Email  *string `json:"email"`
-	UserID *string `json:"userId"`
+	Email       *string `json:"email"`
+	DisplayName *string `json:"displayName"`
+	Name        *string `json:"name"`
+	FirstName   *string `json:"firstName"`
+	LastName    *string `json:"lastName"`
+	NickName    *string `json:"nickName"`
+	Description *string `json:"description"`
+	Location    *string `json:"location"`
+}
+
+type Users struct {
+	Count *int    `json:"count"`
+	List  []*User `json:"list"`
 }
