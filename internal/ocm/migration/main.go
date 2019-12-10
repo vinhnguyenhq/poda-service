@@ -14,6 +14,8 @@ import (
 func updateMigration(db *gorm.DB) error {
 	return db.AutoMigrate(
 		&models.User{},
+		&models.Drug{},
+		&models.UsageHistory{},
 	).Error
 }
 
@@ -35,8 +37,10 @@ func ServiceAutoMigration(db *gorm.DB) error {
 	if err := updateMigration(db); err != nil {
 		return err
 	}
-	m = gormigrate.New(db, gormigrate.DefaultOptions, []*gormigrate.Migration{
-		jobs.SeedUsers,
-	})
+
+	migrations := append(jobs.SeedUsers, jobs.SeedDrugs...)
+	migrations = append(migrations, jobs.SeedUsageHistories...)
+
+	m = gormigrate.New(db, gormigrate.DefaultOptions, migrations)
 	return m.Migrate()
 }

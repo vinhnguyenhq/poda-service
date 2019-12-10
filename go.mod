@@ -6,18 +6,18 @@ require (
 	github.com/99designs/gqlgen v0.10.2
 	github.com/cmelgarejo/go-gql-server v0.0.0-20190728060617-a516f3cc65b4 // indirect
 	github.com/denisenkom/go-mssqldb v0.0.0-20191128021309-1d7a30a10f73 // indirect
+	github.com/gin-contrib/cors v1.3.0
 	github.com/gin-gonic/gin v1.5.0
 	github.com/go-playground/universal-translator v0.17.0 // indirect
 	github.com/gofrs/uuid v3.2.0+incompatible
 	github.com/jinzhu/gorm v1.9.11
 	github.com/jinzhu/now v1.1.1 // indirect
 	github.com/json-iterator/go v1.1.8 // indirect
+	github.com/k0kubun/pp v3.0.1+incompatible
 	github.com/leodido/go-urn v1.2.0 // indirect
 	github.com/lib/pq v1.2.0 // indirect
 	github.com/mattn/go-isatty v0.0.10 // indirect
 	github.com/mattn/go-sqlite3 v2.0.1+incompatible // indirect
-	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
-	github.com/modern-go/reflect2 v1.0.1 // indirect
 	github.com/sirupsen/logrus v1.4.2
 	github.com/vektah/gqlparser v1.2.0
 	golang.org/x/crypto v0.0.0-20191206172530-e9b2fee46413 // indirect

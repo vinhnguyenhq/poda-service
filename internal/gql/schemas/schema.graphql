@@ -1,67 +1,42 @@
-scalar Time
+# The query type, represents all of the entry points into our object graph
+type Query {
+  drugs: [Drug!]
+  drug(id: ID!): Drug
+  users: [User!]
+  user(id: ID!): User
+  usageHistories(userId: ID): [UsageHistory!]!
+}
 
-# Types
+# The mutation type, represents all updates we can make to our data
+type Mutation {
+  ping: Boolean!
+}
+
+# User
 type User {
   id: ID!
-  email: String!
-  name: String
-  firstName: String
-  lastName: String
-  nickName: String
-  description: String
-  location: String
+  alias: String!
   createdAt: Time!
   updatedAt: Time
 }
 
+# Drug
 type Drug {
   id: ID!
   name: String!
   description: String!
+  createdAt: Time!
+  updatedAt: Time
 }
 
+# Usage History
 type UsageHistory {
   id: ID!
-  drug: Drug
-  user: User
-  notes: String
+  drug: Drug!
+  user: User!
   quantity: Int!
   createdAt: Time!
   updatedAt: Time
 }
 
-# Input Types
-input UserInput {
-  email: String
-  displayName: String
-  name: String
-  firstName: String
-  lastName: String
-  nickName: String
-  description: String
-  location: String
-}
-
-# List Types
-type Users {
-  count: Int # You want to return count for a grid for example
-  list: [User!]! # that is why we need to specify the users object this way
-}
-
-type UsageHistories {
-  count: Int
-  list: [UsageHistory!]!
-}
-
-# Define mutations here
-type Mutation {
-  createUser(input: UserInput!): User!
-  updateUser(id: ID!, input: UserInput!): User!
-  deleteUser(id: ID!): Boolean!
-}
-
-# Define queries here
-type Query {
-  users(id: ID): Users!
-  usageHistories(userId: ID): UsageHistories!
-}
+scalar Time

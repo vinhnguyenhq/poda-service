@@ -1,6 +1,7 @@
 package server
 
 import (
+	"github.com/gin-contrib/cors"
 	log "github.com/vinhnguyenhq/poda-service/internal/logger"
 
 	"github.com/gin-gonic/gin"
@@ -27,6 +28,9 @@ func Run(orm *orm.ORM) {
 	endpoint := "http://" + host + ":" + port
 
 	r := gin.Default()
+
+	r.Use(cors.Default())
+
 	// Handlers
 	// Simple keep-alive/ping handler
 	r.GET("/ping", handlers.Ping())

@@ -7,30 +7,30 @@ import (
 )
 
 var (
-	uname                    = "Test User"
-	fname                    = "Test"
-	lname                    = "User"
-	nname                    = "Foo Bar"
-	description              = "This is the first user ever!"
-	location                 = "His house, maybe? Wouldn't know"
-	firstUser   *models.User = &models.User{
-		Email:       "test@test.com",
-		Name:        &uname,
-		FirstName:   &fname,
-		LastName:    &lname,
-		NickName:    &nname,
-		Description: &description,
-		Location:    &location,
+	users []*models.User = []*models.User{
+		&models.User{Base: models.Base{ID: 1}, Alias: "rick"},
+		&models.User{Base: models.Base{ID: 2}, Alias: "daryl"},
 	}
 )
 
-// SeedUsers inserts the first users
-var SeedUsers *gormigrate.Migration = &gormigrate.Migration{
-	ID: "SEED_USERS",
-	Migrate: func(db *gorm.DB) error {
-		return db.Create(&firstUser).Error
+// SeedUsers
+var SeedUsers []*gormigrate.Migration = []*gormigrate.Migration{
+	{
+		ID: "seed_user_1",
+		Migrate: func(db *gorm.DB) error {
+			return db.Create(users[0]).Error
+		},
+		Rollback: func(db *gorm.DB) error {
+			return db.Delete(users[0]).Error
+		},
 	},
-	Rollback: func(db *gorm.DB) error {
-		return db.Delete(&firstUser).Error
+	{
+		ID: "seed_user_2",
+		Migrate: func(db *gorm.DB) error {
+			return db.Create(users[1]).Error
+		},
+		Rollback: func(db *gorm.DB) error {
+			return db.Delete(users[1]).Error
+		},
 	},
 }
